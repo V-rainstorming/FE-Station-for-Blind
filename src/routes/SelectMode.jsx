@@ -9,7 +9,6 @@ const Container = styled.div`
     align-items: center;
     padding: 20vh 20vw;
 `;
-
 const BtnTo = styled(Link)`
     box-sizing: border-box;
     display: block;
