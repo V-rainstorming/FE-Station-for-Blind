@@ -18,28 +18,36 @@ const MainLayout = styled.div`
     margin: 0 auto;
     align-items: center;
     justify-content: center;
-    height: 90vh;
     width: 100%;
 `;
 
 const BusImg = styled.img`
-    height: 100%;
-    transform: translateX(10vh);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 935px;
+    transform: translate(-45%, -50%);
 `;
 const RouteImg = styled.img`
-    height: 72%;
-    transform: translateX(-52vh);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    height: 54%;
+    transform: translate(90%, -50%);
 `;
 const LineUpper = styled.img`
-    position: absolute;
-    top: 1vh;
-    transform: translateX(-3vh);
+    width: 165px;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-70%) rotate(18deg);
     ${props => !(props.$getOn || props.$getOff) && 'display: none;'}
 `;
 const LineLower = styled.img`
-    position: absolute;
-    top: 12vh;
-    transform: translateX(-7vh);
+    width: 210px;
+    position: fixed;
+    top: 18%;
+    transform: translateX(-32%) rotate(5deg);
     ${props => !(props.$getOn || props.$getOff) && 'display: none;'}
 `;
 
@@ -48,20 +56,22 @@ const Routes = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    position: absolute;
-    transform: translateX(40vh);
-    width: 55vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(20%, -50%);
+    width: 30%;
 `;
 const RouteName = styled.div`
-    font-size: 5vh;
-    font-weight: 500;
+    font-size: 26px;
+    font-weight: 400;
     font-family: Pretendard;
-    padding: 4.2vh;
+    padding: 9.5%;
     position: relative;
     color: ${props => props.$prev ? '#777' : 'black'};
     & > p {
         position: absolute;
-        font-size: 3vh;
+        font-size: 18px;
         font-weight: 700;
         color: #e04227;
         margin: 0;

@@ -16,9 +16,7 @@ function App() {
     <Router>
       <GlobalStyle/>
       <Routes>
-        <Route path='/' element={<SelectMode/>}/>
-        <Route path='/control' element={<ControlSystem/>}/>
-        <Route path='/busterminal' element={<BusTerminal/>}/>
+        <Route path='/' element={<BusTerminal/>}/>
       </Routes>
     </Router>
   );

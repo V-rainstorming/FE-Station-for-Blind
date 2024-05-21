@@ -12,7 +12,7 @@ const BtnStyle = styled.div`
     font-family: 'Pretendard';
     color: ${props => props.$enable ? 'white' : '#232527'};
     position: fixed;
-    left: 5vh;
+    right: 5vh;
     bottom: 5vh;
 `;
 
