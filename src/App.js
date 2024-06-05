@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BusTerminal from './routes/BusTerminal';
-import ControlSystem from './routes/ControlSystem';
 import { createGlobalStyle } from 'styled-components';
-import SelectMode from './routes/SelectMode';
 
 const GlobalStyle = createGlobalStyle`
   body {

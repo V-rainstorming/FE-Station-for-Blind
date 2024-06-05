@@ -4,51 +4,33 @@ import BtnStop from '../components/BtnStop';
 
 import bus_background from '../assets/BusBackground.svg';
 import bus_routes from '../assets/BusRoutes.svg';
-import line_upper from '../assets/line_top.png';
-import line_lower from '../assets/line_bottom.png';
 import { useState } from 'react';
 
 const Container = styled.div`
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 const MainLayout = styled.div`
     display: flex;
-    margin: 0 auto;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    position: relative;
 `;
 
 const BusImg = styled.img`
-    position: fixed;
-    left: 50%;
-    top: 50%;
     width: 935px;
-    transform: translate(-45%, -50%);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
 `;
 const RouteImg = styled.img`
-    position: fixed;
-    left: 50%;
-    top: 50%;
     height: 54%;
-    transform: translate(90%, -50%);
-`;
-const LineUpper = styled.img`
-    width: 165px;
-    position: fixed;
-    top: 6%;
-    left: 50%;
-    transform: translateX(-70%) rotate(18deg);
-    ${props => !(props.$getOn || props.$getOff) && 'display: none;'}
-`;
-const LineLower = styled.img`
-    width: 210px;
-    position: fixed;
-    top: 18%;
-    transform: translateX(-32%) rotate(5deg);
-    ${props => !(props.$getOn || props.$getOff) && 'display: none;'}
+    width: 50px;
 `;
 
 const Routes = styled.div`
@@ -56,17 +38,13 @@ const Routes = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(20%, -50%);
-    width: 30%;
+    width: 400px;
 `;
 const RouteName = styled.div`
     font-size: 26px;
     font-weight: 400;
     font-family: Pretendard;
-    padding: 9.5%;
+    padding: 47px;
     position: relative;
     color: ${props => props.$prev ? '#777' : 'black'};
     & > p {
@@ -86,11 +64,10 @@ function BusTerminal() {
 
     return (
         <Container>
+            <div><p>text</p></div>
             <MainLayout>
                 <BusImg src={bus_background}/>
                 <RouteImg src={bus_routes}/>
-                <LineUpper src={line_upper} $getOn={getOnRoute[idx+2]} $getOff={getOffRoute[idx+2]}/>
-                <LineLower src={line_lower} $getOn={getOnRoute[idx+1]} $getOff={getOffRoute[idx+1]}/>
                 <Routes>
                     <RouteName $prev={false}>{routeNames[idx+2]}{(getOnRoute[idx+2] || getOffRoute[idx+2]) && (<p>시각장애인 {getOnRoute[idx+2] && '승'}{getOffRoute[idx+2] && '하'}차</p>)}</RouteName>
                     <RouteName $prev={false}>{routeNames[idx+1]}{(getOnRoute[idx+1] || getOffRoute[idx+1]) && (<p>시각장애인 {getOnRoute[idx+1] && '승'}{getOffRoute[idx+1] && '하'}차</p>)}</RouteName>
