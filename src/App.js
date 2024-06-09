@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BusTerminal from './routes/BusTerminal';
+import TerminalHome from './routes/TerminalHome';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -14,7 +15,7 @@ function App() {
     <Router>
       <GlobalStyle/>
       <Routes>
-        <Route path='/' element={<BusTerminal/>}/>
+        <Route path='/' element={<TerminalHome/>}/>
       </Routes>
     </Router>
   );
