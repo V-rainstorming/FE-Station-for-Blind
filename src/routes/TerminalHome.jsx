@@ -163,7 +163,7 @@ const Distance = styled.div`
 `;
 
 function TerminalHome() {
-    const url = 'http://www.devhsb.com:28900/busDeviceInfo?bus_id=';
+    const url = 'https://www.devhsb.com/busDeviceInfo?bus_id=';
     const [userOnboardInfo, setUserOnboardInfo] = useState({});
     const [busPosInfo, setBusPosInfo] = useState({});
     const [routeList, setRouteList] = useState({});
@@ -260,7 +260,8 @@ function TerminalHome() {
             const response = await fetch(btnUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify({'service_id': userOnboardInfo.service_id})
             })
