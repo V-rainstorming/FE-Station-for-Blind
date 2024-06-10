@@ -9,6 +9,10 @@ const Background = styled.div`
     background-image: linear-gradient(90deg, #112e59 0, #2563bf 60%);
     width: 100vw;
     height: 100vh;
+    font-family: Pretendard;
+    position: fixed;
+    left: 0;
+    top: 0;
 `;
 const RouteContainer = styled.div`
     background-color: white;
@@ -55,7 +59,7 @@ const RightGroup = styled.div`
     justify-content: space-between;
     align-items: end;
     position: fixed;
-    height: 100vh;
+    height: 100%;
     right: 42vw;
     top: 50%;
     transform: translate(0, -50%);
@@ -249,7 +253,10 @@ function TerminalHome() {
     }
 
     const getTimeString = () => {
-        return `${currentDateTime.getHours()}:${currentDateTime.getMinutes()}:${currentDateTime.getSeconds()}`;
+        const hours = currentDateTime.getHours();
+        const minutes = currentDateTime.getMinutes();
+        const seconds = currentDateTime.getSeconds();
+        return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     }
 
     const handleOnClick = async () => {
@@ -314,7 +321,7 @@ function TerminalHome() {
             </TimeViewer>
             {userOnboardInfo && (
             <BottomLeftItems>
-                <img src={arrow_right} style={{width: '80px'}}/>
+                <img src={busPosInfo.is_user_infront == 1 ? arrow_left : arrow_right} style={{width: '80px'}}/>
                 <FrontOrBack>{busPosInfo.is_user_infront == 1 ? '전방' : '후방'}</FrontOrBack>
                 <Distance>
                     <p>{busPosInfo.user_bus_dist >= 100 ? Math.floor(busPosInfo.user_bus_dist) / 100 : Math.floor(busPosInfo.user_bus_dist)}</p>
