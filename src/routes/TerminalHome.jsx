@@ -6,7 +6,7 @@ import arrow_left from "../assets/arrow_left.svg"
 import { useEffect, useState } from "react";
 
 const Background = styled.div`
-    background-image: linear-gradient(90deg, #112e59 0, #2563bf 60%);
+    background-image: linear-gradient(90deg, #232527 0, #555555 60%);
     width: 100vw;
     height: 100vh;
     font-family: Pretendard;
@@ -97,20 +97,20 @@ const BusNumber = styled.div`
     }
 `;
 const GetInBtn = styled.div`
-    width: 100px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
     border: solid 3px ${props => props.$primary ? '#FFAD62' : '#777'};
-    border-radius: 10px;
+    border-radius: 40px;
     background-color: rgba(35, 37, 39, .7);
     margin: 15px;
     cursor: pointer;
     & > p {
-        font-size: 28px;
-        font-weight: 500;
+        font-size: 52px;
+        font-weight: 700;
         color: ${props => props.$primary ? '#FFAD62' : '#777'};
         margin: 0;
         text-align: center;
-        line-height: 50px;
+        line-height: 100px;
     }
 `;
 
@@ -148,7 +148,7 @@ const BottomLeftItems = styled.div`
     bottom: 15px;
 `;
 const FrontOrBack = styled.p`
-    font-size: 36px;
+    font-size: 56px;
     font-weight: 500;
     color: white;
     margin: 10px 0;
@@ -159,7 +159,7 @@ const Distance = styled.div`
         margin: 0;
         color: white;
         font-weight: 500;
-        font-size: 52px;
+        font-size: 70px;
     }
     & > p:nth-child(2) {
         color: #FFAD62;
@@ -321,7 +321,7 @@ function TerminalHome() {
             </TimeViewer>
             {userOnboardInfo && (
             <BottomLeftItems>
-                <img src={busPosInfo.is_user_infront == 1 ? arrow_left : arrow_right} style={{width: '80px'}}/>
+                <img src={busPosInfo.is_user_infront == 1 ? arrow_left : arrow_right} style={{width: '120px'}}/>
                 <FrontOrBack>{busPosInfo.is_user_infront == 1 ? '전방' : '후방'}</FrontOrBack>
                 <Distance>
                     <p>{busPosInfo.user_bus_dist >= 100 ? Math.floor(busPosInfo.user_bus_dist) / 100 : Math.floor(busPosInfo.user_bus_dist)}</p>
