@@ -93,7 +93,7 @@ const BusNumber = styled.div`
     & > p:nth-child(2) {
         font-weight: 700;
         font-size: 58px;
-        color: #122F5A;
+        color: #232527;
     }
 `;
 const GetInBtn = styled.div`
