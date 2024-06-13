@@ -4,6 +4,7 @@ import bus_image from "../assets/BusImg.png"
 import arrow_right from "../assets/arrow_right.svg"
 import arrow_left from "../assets/arrow_left.svg"
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const Background = styled.div`
     background-image: linear-gradient(90deg, #232527 0, #555555 60%);
@@ -177,6 +178,7 @@ function TerminalHome() {
 
     const [stationArray, setStationArray] = useState(['-', '-', '-', '-', '-']);
     const [onBoardArray, setOnBoardArray] = useState([0, 0, 0, 0, 0]);
+
     let data;
 
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -197,13 +199,19 @@ function TerminalHome() {
 
     useEffect(() => {
         if(isLoading) return;
-        const idx = busPosInfo.now_station_no;
+        const no = busPosInfo.now_station_no;
+        let idx = no;
+        routeList.forEach((route, i) => {
+            if (route.id == no) {
+                idx = i;
+            }
+        })
         let userArr = [0, 0, 0, 0, 0];
         let tmpArr = ['-', '-', '-', '-', '-'];
         let j = 0;
         for(let i = idx - 2; i <= idx + 2; i++) {
             if (i < 0 || i >= routeList.length) continue;
-            if (userOnboardInfo.user_onboard_station_id == i) {
+            if (userOnboardInfo.user_onboard_station_id == routeList[i].id) {
                 userArr[j] = 1;
             }
             tmpArr[j++] = routeList[i].station_name;
@@ -262,15 +270,25 @@ function TerminalHome() {
     const handleOnClick = async () => {
         if (userOnboardInfo == null || userOnboardInfo == undefined) return;
         console.log(userOnboardInfo.service_id);
+
+        axios.post('https://www.devhsb.com/onboardPassenger', {
+            'service_id': userOnboardInfo.service_id,
+        })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        /*
         try {
-            const btnUrl = "http://www.hsbdev.com:28900/onBoardPassenger";
+            const btnUrl = "https://www.devhsb.com/onboardPassenger";
             const response = await fetch(btnUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
                 },
-                body: JSON.stringify({'service_id': userOnboardInfo.service_id})
+                body: JSON.stringfy({'service_id': userOnboardInfo.service_id}),
             })
             const data = await response.json();
             console.log(data);
@@ -283,6 +301,7 @@ function TerminalHome() {
         catch {
             console.log("POST method failed: post failed");
         }
+        */
     }
 
     return (
@@ -305,7 +324,7 @@ function TerminalHome() {
                     <img src={bus_image} />
                     <BusNumber>
                         <p>차량번호</p>
-                        <p>{busId == 1 ? '440' : '333'}</p>
+                        <p>{busId == 1 ? '516' : '519'}</p>
                     </BusNumber>
                 </BusImage>
                 <GetInBtn onClick={handleOnClick} $primary={isUserWaiting}>
