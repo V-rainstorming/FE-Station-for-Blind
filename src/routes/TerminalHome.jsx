@@ -210,11 +210,14 @@ function TerminalHome() {
         let tmpArr = ['-', '-', '-', '-', '-'];
         let j = 0;
         for(let i = idx - 2; i <= idx + 2; i++) {
-            if (i < 0 || i >= routeList.length) continue;
-            if (userOnboardInfo.user_onboard_station_id == routeList[i].id) {
+            if (i < 0 || i >= routeList.length) {
+                j++;
+                continue;
+            }
+            if (userOnboardInfo?.user_onboard_station_id == routeList[i].id) {
                 userArr[j] = 1;
             }
-            tmpArr[j++] = routeList[i].station_name;
+            tmpArr[j++] = routeList[i].station_name == null ? '-' : routeList[i].station_name;
             setStationArray(tmpArr);
             setOnBoardArray(userArr);
         }
@@ -319,7 +322,7 @@ function TerminalHome() {
                 </StationList>
             </RouteContainer>
             <RightGroup>
-                <CurrentStation>{routeList[busPosInfo.now_station_no].station_name}</CurrentStation>
+                <CurrentStation>{stationArray[2]}</CurrentStation>
                 <BusImage>
                     <img src={bus_image} />
                     <BusNumber>
