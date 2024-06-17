@@ -330,7 +330,7 @@ function TerminalHome() {
                         <p>{busId == 1 ? '516' : '519'}</p>
                     </BusNumber>
                 </BusImage>
-                <GetInBtn onClick={handleOnClick} $primary={isUserWaiting}>
+                <GetInBtn onClick={handleOnClick} $primary={onBoardArray[2] + onBoardArray[3] > 0}>
                     <p>승차</p>
                 </GetInBtn>
             </RightGroup>
@@ -341,7 +341,7 @@ function TerminalHome() {
                 </DateViewer>
                 <p>{getTimeString()}</p>
             </TimeViewer>
-            {userOnboardInfo && (
+            {onBoardArray[2] + onBoardArray[3] > 0 && (
             <BottomLeftItems>
                 <img src={busPosInfo.is_user_infront == 1 ? arrow_left : arrow_right} style={{width: '120px'}}/>
                 <FrontOrBack>{busPosInfo.is_user_infront == 1 ? '전방' : '후방'}</FrontOrBack>
